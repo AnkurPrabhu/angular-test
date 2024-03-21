@@ -2,9 +2,15 @@
 
 <div class="chat-box">
   <div class="messages-container">
-    <div class="message" *ngFor="let message of messages">
-      <div *ngIf="message.role !== 'system'">
-      <strong>{{ message.role }}:</strong> {{ message.content }}
+    <div  *ngFor="let message of messages">
+      <div  class="message" *ngIf="message.role !== 'system'">
+        <div   *ngIf="message.role === 'user'">
+            <strong  >{{ message.role }}:</strong> {{ message.content }}
+        </div>
+        <div *ngIf="message.role === 'assistant'">
+            <strong  > <p appHighlight> {{ message.role }} </p>:</strong> {{ message.content }}
+        </div>
+      
       </div>
     </div>
   </div>

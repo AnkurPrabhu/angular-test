@@ -25,4 +25,18 @@ getHero(id: number): Observable<Hero> {
   this.messageService.add(`HeroService: fetched hero id=${id}`);
   return of(hero);
 }
+
+createHero(name:string): Observable<Hero>{
+
+  const id= Math.max(...HEROES.map(o => o.id))+ 1 
+  const new_hero:Hero={
+    id:id,
+    name:name
+  }
+  HEROES.push(new_hero)
+  return of(new_hero)
+
+}
+
+
 }

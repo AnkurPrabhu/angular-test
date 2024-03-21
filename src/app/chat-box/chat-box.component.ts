@@ -4,10 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor,NgIf } from '@angular/common';
 import OpenAI from 'openai';
+import { NgSwitch } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { Observable,from, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { routes } from '../app.routes';
+import { HighlightDirective } from '../highlight.directive';
 interface Message {
   role: string;
   content: string;
@@ -47,7 +49,7 @@ interface ChatCompletion {
   standalone: true,
   selector: 'app-chat-box',
   templateUrl: './chat-box.component.html',
-  imports: [FormsModule,NgFor,HttpClientModule,NgIf],
+  imports: [FormsModule,NgFor,HttpClientModule,NgIf,NgSwitch,HighlightDirective],
   styleUrls: ['./chat-box.component.css']
 })
 export class ChatBoxComponent {
@@ -246,7 +248,7 @@ Dispute Resolution: Facilitates the resolution of disputes in a fair and timely 
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization:`Bearer`+ ,
+      Authorization:"Bearer "+ environment.apiKey,
     });
 
     return this.http.post<ChatCompletion>(this.baseUrl, payload, { headers })
