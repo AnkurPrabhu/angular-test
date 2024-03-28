@@ -10,3 +10,7 @@
 <router-outlet></router-outlet>
 <app-messages>
 </app-messages>
+
+<br>
+
+<input type="text" placeholder="search something" [(ngModel)]="inputText" (ngModelChange)="onChange($event)">
